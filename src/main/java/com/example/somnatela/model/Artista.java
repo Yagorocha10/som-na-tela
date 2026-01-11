@@ -2,6 +2,9 @@ package com.example.somnatela.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "artistas")
 public class Artista {
@@ -16,11 +19,13 @@ public class Artista {
     @Enumerated(EnumType.STRING)
     private TipoArtista tipoArtista;
 
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<Musica> musicas = new ArrayList<>();
+
     public Artista() {
     }
 
-    public Artista(Long id, String nome, TipoArtista tipoArtista) {
-        this.id = id;
+    public Artista(String nome, TipoArtista tipoArtista) {
         this.nome = nome;
         this.tipoArtista = tipoArtista;
     }

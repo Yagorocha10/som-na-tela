@@ -12,6 +12,9 @@ public class Musica {
     private Long id;
     private String nome;
 
+    @ManyToOne
+    private Artista artista;
+
     public Musica() {
     }
 
